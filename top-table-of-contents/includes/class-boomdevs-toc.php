@@ -6,6 +6,7 @@
  * A class definition that includes attributes and functions used across both the
  * public-facing side of the site and the admin area.
  *
+ * @link       https://boomdevs.com/
  * @since      1.0.0
  *
  * @package    Boomdevs_Toc
@@ -78,7 +79,7 @@ class Boomdevs_Toc {
         if ( defined( 'BOOMDEVS_TOC_VERSION' ) ) {
             $this->version = BOOMDEVS_TOC_VERSION;
         } else {
-            $this->version = '1.3.22';
+            $this->version = '1.3.23';
         }
         
         if ( defined( 'BOOMDEVS_FULL_NAME' ) ) {

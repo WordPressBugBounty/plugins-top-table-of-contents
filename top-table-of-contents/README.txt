@@ -1,9 +1,9 @@
 === TOP Table Of Contents ===
-Contributors: boomdevs, wpmessiah
+Contributors: boomdevs
 Tags: table-of-contents, toc , navigation, seo, indexes
 Requires at least: 5.0
 Tested up to: 6.6.2
-Stable tag: 1.3.22
+Stable tag: 1.3.23
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -86,15 +86,15 @@ Do you want more features from your wordpress table of contents plugin? Upgrade 
 Don't settle for a basic table of contents plugin. Upgrade to the pro version of the "Top Table of Contents" today and elevate your website to the next level!
 
 
-[Get the Pro](https://wpmessiah.com/products/wordpress-table-of-contents/)
+[Get the Pro](https://boomdevs.com/products/wordpress-table-of-contents/)
 
 [View Demo](https://demo.boomdevs.com/table-of-contents/)
 
-[Read Documentation](https://wpmessiah.com/docs/wordpress-table-of-contents/)
+[Read Documentation](https://boomdevs.com/docs/wordpress-table-of-contents/)
 
-[Submit Ticket](https://wpmessiah.com/forums/forum/wordpress-table-of-contents/)
+[Submit Ticket](https://boomdevs.com/forums/forum/wordpress-table-of-contents/)
 
-Made with ❣️ By [WP Messiah](https://wpmessiah.com/)
+Made with ❣️ By [BoomDevs](https://boomdevs.com/)
 
 **If you really like this plugin please don't forget to give us your rating. Thanks so much!** ⭐⭐⭐⭐⭐
 
@@ -102,11 +102,11 @@ Made with ❣️ By [WP Messiah](https://wpmessiah.com/)
 
 TOP Table Of Contents collects some telemetry data upon user's confirmation. This helps us to troubleshoot problems faster & make product improvements.
 
-WP Messiah **does not gather any data by default.** The tracking SDK only starts gathering basic telemetry data **when a user allows it via the admin notice**. We collect the data to ensure a great user experience for all our users.
+BoomDevs **does not gather any data by default.** The tracking SDK only starts gathering basic telemetry data **when a user allows it via the admin notice**. We collect the data to ensure a great user experience for all our users.
 
-WP Messiah tracking SDK **DOES NOT IMMEDIATELY** start gathering data, **without confirmation from users in any case.**
+BoomDevs tracking SDK **DOES NOT IMMEDIATELY** start gathering data, **without confirmation from users in any case.**
 
-Learn more about how [WP Messiah collects and uses this data](https://appsero.com/privacy-policy/).
+Learn more about how [BoomDevs collects and uses this data](https://appsero.com/privacy-policy/).
 
 ### 🚀 Check out our Other Products 🚀
 
@@ -144,7 +144,7 @@ Here are some of our amazing plugins that you can use to boost your WordPress we
 
 == Support ==
 
-If you have any questions, please email us at **[contact@wpmessiah.com](mailto:contact@wpmessiah.com)**
+If you have any questions, please email us at **[contact@boomdevs.com](mailto:contact@boomdevs.com)**
 
 == Screenshots ==
 
@@ -299,5 +299,5 @@ Fix: Fix heading id issues for Brizy page builder
 = 1.3.21 - 13 June 2024 =
 * Fix: deprected error solved
 
-= 1.3.22 - 10 November 2024 =
-* Fix: Updated Link
+= 1.3.23 - 10 November 2024 =
+* Fix: some issues

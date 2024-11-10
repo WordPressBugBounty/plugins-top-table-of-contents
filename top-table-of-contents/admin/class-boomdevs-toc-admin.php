@@ -3,6 +3,7 @@ require_once BOOMDEVS_TOC_PATH . '/includes/class-boomdevs-toc-utils.php';
 /**
  * The admin-specific functionality of the plugin.
  *
+ * @link       https://boomdevs.com/
  * @since      1.0.0
  *
  * @package    Boomdevs_Toc
@@ -142,7 +143,7 @@ class Boomdevs_Toc_Admin {
                 '<a class="bd_toc_setting_button" href="'.esc_url(admin_url('/admin.php?page=boomdevs-toc-settings#tab=auto-insert')).'">' . __( 'Settings', 'boomdevs-toc' ) . '</a>',
             );
             $pro_link = array(
-                '<a class="bd_toc_pro_button" target="_blank" href="'.esc_url('https://wpmessiah.com/products/wordpress-table-of-contents/#price').'">' . __( 'Go Pro', 'boomdevs-toc' ) . '</a>',
+                '<a class="bd_toc_pro_button" target="_blank" href="'.esc_url('https://boomdevs.com/products/wordpress-table-of-contents/#price').'">' . __( 'Go Pro', 'boomdevs-toc' ) . '</a>',
             );
         }
 
