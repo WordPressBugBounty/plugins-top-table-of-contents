@@ -3,7 +3,6 @@
 /**
  * Fired during plugin activation
  *
- * @link       https://boomdevs.com/
  * @since      1.0.0
  *
  * @package    Boomdevs_Toc

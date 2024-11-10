@@ -43,7 +43,7 @@ class Boomdevs_Toc_Settings
             ),
             'footer_credit' => sprintf(
                 __('A proud creation of <a href="%s">BoomDevs</a>', 'boomdevs-toc'),
-                esc_url('https://boomdevs.com/')
+                esc_url('https://wpmessiah.com/')
             ),
             'menu_title' => __('TOP Table Of Contents', 'boomdevs-toc'),
             'menu_slug' => 'boomdevs-toc-settings',
@@ -56,15 +56,23 @@ class Boomdevs_Toc_Settings
             'output_css' => true,
         );
 
-        $options_panel_builder = apply_filters('boomdevs_toc_register_options_panel', $options_panel_func, $options_panel_config);
 
-        CSF::{$options_panel_builder['func']}
+        // Register settings panel type
+        $current_url = home_url($_SERVER['REQUEST_URI']);
 
-        ($prefix, $options_panel_builder['config']);
+        $options_panel_builder = apply_filters( 'boomdevs_toc_register_options_panel', $options_panel_func, $options_panel_config );
+
+        if ($options_panel_builder['func'] == 'createCustomizeOptions') {
+            $options_panel_config['show_in_customizer'] = true;
+        }
+
+        $options_panel_builder = apply_filters( 'boomdevs_toc_register_options_panel', $options_panel_func, $options_panel_config );
+        CSF::{$options_panel_builder['func']}( self::$prefix, $options_panel_builder['config'] );
+        CSF::createOptions( self::$prefix, $options_panel_builder['config']  );
 
         $parent = '';
 
-        if ($options_panel_builder['func'] == 'createCustomizeOptions') {
+        if ($options_panel_builder['func'] == 'createCustomizeOptions' && ! strpos($current_url, 'admin.php?page=boomdevs-toc-settings') !== false) {
             // Add to level section if in customizer mode
             CSF::createSection($prefix, array(
                 'id' => $prefix . '_boomdevs_toc',
@@ -73,6 +81,7 @@ class Boomdevs_Toc_Settings
 
             $parent = $prefix . '_boomdevs_toc';
         }
+
 
         // Data insert section
         CSF::createSection($prefix, array(
@@ -942,6 +951,11 @@ class Boomdevs_Toc_Settings
             ),
         ));
 
+        if ($options_panel_builder['func'] == 'createCustomizeOptions' && ! strpos($current_url, 'admin.php?page=boomdevs-toc-settings') !== false) {} else {
+            CSF::createSection(self::$prefix, array(
+                'title' => 'Edit With Customizer',
+            ));
+        }
         // Free Vs Pro
         if (!Boomdevs_Toc_Utils::isProActivated()) {
             CSF::createSection($prefix, array(
@@ -984,7 +998,7 @@ class Boomdevs_Toc_Settings
 
     protected function get_premium_alert_message()
     {
-        return sprintf('%s <a href="https://boomdevs.com/product/wordpress-table-of-contents/">%s</a>',
+        return sprintf('%s <a href="https://wpmessiah.com/product/wordpress-table-of-contents/">%s</a>',
             __('This is a premium feature of TOC and requires the pro version of this plugin to unlock.', 'boomdevs-toc'),
             __('Try out the Pro version', 'boomdevs-toc')
         );
@@ -992,7 +1006,7 @@ class Boomdevs_Toc_Settings
 
     protected function get_sub_heading_alert_message()
     {
-        $message = sprintf('%s <a href="https://boomdevs.com/product/wordpress-table-of-contents/">%s</a>',
+        $message = sprintf('%s <a href="https://wpmessiah.com/product/wordpress-table-of-contents/">%s</a>',
             __('This is a premium feature of TOC and requires the pro version of this plugin to unlock.', 'boomdevs-toc'),
             __('Try out the Pro version', 'boomdevs-toc')
         );
@@ -1016,7 +1030,7 @@ class Boomdevs_Toc_Settings
 
     protected function get_sticky_sidebar_alert_message()
     {
-        $message = sprintf('%s <a href="https://boomdevs.com/product/wordpress-table-of-contents/">%s</a>',
+        $message = sprintf('%s <a href="https://wpmessiah.com/product/wordpress-table-of-contents/">%s</a>',
             __('This is a premium feature of TOC and requires the pro version of this plugin to unlock.', 'boomdevs-toc'),
             __('Try out the Pro version', 'boomdevs-toc')
         );
@@ -1041,7 +1055,7 @@ class Boomdevs_Toc_Settings
 
     protected function get_floating_premium_alert_message()
     {
-        $message = sprintf('%s <a href="https://boomdevs.com/product/wordpress-table-of-contents/">%s</a>',
+        $message = sprintf('%s <a href="https://wpmessiah.com/product/wordpress-table-of-contents/">%s</a>',
             __('This is a premium feature of TOC and requires the pro version of this plugin to unlock.', 'boomdevs-toc'),
             __('Try out the Pro version', 'boomdevs-toc')
         );
@@ -1072,7 +1086,7 @@ class Boomdevs_Toc_Settings
 
     protected function get_floating_navigation_premium_alert_message()
     {
-        $message = sprintf('%s <a href="https://boomdevs.com/product/wordpress-table-of-contents/">%s</a>',
+        $message = sprintf('%s <a href="https://wpmessiah.com/product/wordpress-table-of-contents/">%s</a>',
             __('This is a premium feature of TOC and requires the pro version of this plugin to unlock.', 'boomdevs-toc'),
             __('Try out the Pro version', 'boomdevs-toc')
         );
@@ -1096,7 +1110,7 @@ class Boomdevs_Toc_Settings
 
     protected function get_progress_bar_premium_alert_message()
     {
-        $message = sprintf('%s <a href="https://boomdevs.com/product/wordpress-table-of-contents/">%s</a>',
+        $message = sprintf('%s <a href="https://wpmessiah.com/product/wordpress-table-of-contents/">%s</a>',
             __('This is a premium feature of TOC and requires the pro version of this plugin to unlock.', 'boomdevs-toc'),
             __('Try out the Pro version', 'boomdevs-toc')
         );
@@ -1140,7 +1154,7 @@ class Boomdevs_Toc_Settings
                         </div>
                         <div class="right_btn">
                             <a class="button button-secondary" target="_blank"
-                               href="https://boomdevs.com/products/wordpress-table-of-contents/">Get Pro Now</a>
+                               href="https://wpmessiah.com/products/wordpress-table-of-contents/">Get Pro Now</a>
                         </div>
                     </div>
                 </div>
@@ -1154,12 +1168,12 @@ class Boomdevs_Toc_Settings
                     <div class="money_back_guarantee_text">
                         <h3>14 Days Money Back Guarantee!</h3>
                         <p>Your satisfaction is guaranteed under our 100% No-Risk Double Guarantee. We will<br> happily
-                            <a target="_blank" href="https://boomdevs.com/refund-policy/">refund</a> 100% of your money
+                            <a target="_blank" href="https://wpmessiah.com/refund-policy/">refund</a> 100% of your money
                             if you don’t think our plugin works well within 14 days.</p>
                     </div>
                     <div class="money_back_guarantee_btn">
                         <a class="button button-primary" target="_blank"
-                           href="https://boomdevs.com/product-category/wordpress/wordpress-plugins/">View All
+                           href="https://wpmessiah.com/product-category/wordpress/wordpress-plugins/">View All
                             Products</a>
                     </div>
                 </div>
@@ -1466,3 +1480,17 @@ class Boomdevs_Toc_Settings
 }
 
 
+function wp_toc_customizer_menu() {
+    ?>
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+
+            $('[data-tab-id="edit-with-customizer"]').hide();
+            $('a[href="admin.php?page=boomdevs-toc-settings#tab=edit-with-customizer"]').each(function() {
+                $(this).attr('href', 'customize.php');
+            });
+        });
+    </script>
+    <?php
+}
+add_action('admin_footer', 'wp_toc_customizer_menu');

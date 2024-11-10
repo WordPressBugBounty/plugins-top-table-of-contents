@@ -136,3 +136,6 @@ Fix: Fix heading id issues for Brizy page builder
 
 = 1.3.21 - 13 June 2024 =
 * Fix: deprected error solved
+
+= 1.3.22 - 10 November 2024 =
+* Fix: Updated Link

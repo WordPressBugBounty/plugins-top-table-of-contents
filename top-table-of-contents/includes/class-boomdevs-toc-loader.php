@@ -3,7 +3,6 @@
 /**
  * Register all actions and filters for the plugin
  *
- * @link       https://boomdevs.com/
  * @since      1.0.0
  *
  * @package    Boomdevs_Toc

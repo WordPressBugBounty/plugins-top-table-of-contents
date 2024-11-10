@@ -7,18 +7,16 @@
  * admin area. This file also includes all of the dependencies used by the plugin,
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
- *
- * @link              https://boomdevs.com/
  * @since             1.0.0
  * @package           Boomdevs_Toc
  *
  * @wordpress-plugin
  * Plugin Name:       TOP Table Of Contents
- * Plugin URI:        https://boomdevs.com/boomdevs-toc
+ * Plugin URI:        https://wpmessiah.com/products/wordpress-table-of-contents/
  * Description:       Easily creates an SEO-friendly table of contents for your blog posts and pages. Offers both Auto and Manual Insert with highly customization options.
- * Version:           1.3.21
- * Author:            BoomDevs
- * Author URI:        https://boomdevs.com/
+ * Version:           1.3.22
+ * Author:            WP Messiah
+ * Author URI:        https://wpmessiah.com/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       boomdevs-toc
@@ -34,7 +32,7 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Plugin basic information.
  */
-define( 'BOOMDEVS_TOC_VERSION', '1.3.21' );
+define( 'BOOMDEVS_TOC_VERSION', '1.3.22' );
 define( 'BOOMDEVS_TOC_PATH', plugin_dir_path( __FILE__ ) );
 define( 'BOOMDEVS_TOC_URL', plugin_dir_url( __FILE__ ) );
 define( 'BOOMDEVS_TOC_NAME', 'boomdevs-toc' );
