@@ -6,7 +6,7 @@ require_once BOOMDEVS_TOC_PATH . 'includes/class-boomdevs-toc-utils.php';
 /**
  * The public-facing functionality of the plugin.
  *
- * @link       https://boomdevs.com/
+ * @link       https://wpmessiah.com/
  * @since      1.0.0
  *
  * @package    Boomdevs_Toc
