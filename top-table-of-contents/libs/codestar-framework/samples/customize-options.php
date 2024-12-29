@@ -2889,6 +2889,7 @@ CSF::createSection( $prefix, array(
       'subtitle' => 'Date and Time Both',
       'settings' => array(
         'enableTime' => true,
+        'dateFormat' => 'Y-m-d H:i',
       ),
     ),
 

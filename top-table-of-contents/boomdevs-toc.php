@@ -16,7 +16,7 @@
  * Plugin Name:       TOP Table Of Contents
  * Plugin URI:        https://wpmessiah.com/products/wordpress-table-of-contents/
  * Description:       Easily creates an SEO-friendly table of contents for your blog posts and pages. Offers both Auto and Manual Insert with highly customization options.
- * Version:           1.3.23
+ * Version:           1.3.24
  * Author:            WP Messiah
  * Author URI:        https://wpmessiah.com/
  * License:           GPL-2.0+
@@ -34,7 +34,7 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Plugin basic information.
  */
-define( 'BOOMDEVS_TOC_VERSION', '1.3.23' );
+define( 'BOOMDEVS_TOC_VERSION', '1.3.24' );
 define( 'BOOMDEVS_TOC_PATH', plugin_dir_path( __FILE__ ) );
 define( 'BOOMDEVS_TOC_URL', plugin_dir_url( __FILE__ ) );
 define( 'BOOMDEVS_TOC_NAME', 'boomdevs-toc' );
@@ -46,26 +46,6 @@ define( 'BOOMDEVS_BASE_NAME', plugin_basename( __FILE__ ) );
  * Require Composer autoload
  */
 require __DIR__ . '/vendor/autoload.php';
-
-
-/**
- * Initialize the plugin tracker
- *
- * @return void
- */
-function appsero_init_tracker_top_table_of_contents() {
-
-    if ( ! class_exists( 'Appsero\Client' ) ) {
-        require_once __DIR__ . '/appsero/src/Client.php';
-    }
-
-    $client = new Appsero\Client( 'ffa59dee-5128-4d2c-8c87-be2e83ffefa7', 'TOP Table Of Contents', __FILE__ );
-
-    // Active insights
-    $client->insights()->init();
-}
-
-appsero_init_tracker_top_table_of_contents();
 
 //RankMath SEO Content Readability
 if ( class_exists( 'RankMath' ) ) {

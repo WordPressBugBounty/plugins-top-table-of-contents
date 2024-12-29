@@ -79,7 +79,7 @@ class Boomdevs_Toc {
         if ( defined( 'BOOMDEVS_TOC_VERSION' ) ) {
             $this->version = BOOMDEVS_TOC_VERSION;
         } else {
-            $this->version = '1.3.23';
+            $this->version = '1.3.24';
         }
         
         if ( defined( 'BOOMDEVS_FULL_NAME' ) ) {

@@ -42,7 +42,7 @@ class Boomdevs_Toc_Settings
                 esc_url('https://wordpress.org/support/plugin/top-table-of-contents/reviews/?rate=5#new-post')
             ),
             'footer_credit' => sprintf(
-                __('A proud creation of <a href="%s">BoomDevs</a>', 'boomdevs-toc'),
+                __('A proud creation of <a href="%s">WP Messiah</a>', 'boomdevs-toc'),
                 esc_url('https://wpmessiah.com/')
             ),
             'menu_title' => __('TOP Table Of Contents', 'boomdevs-toc'),
@@ -956,6 +956,10 @@ class Boomdevs_Toc_Settings
             ));
         }
 
+        if (!function_exists('is_plugin_active')) {
+            require_once(ABSPATH . 'wp-admin/includes/plugin.php');
+        }
+
         $is_activated = is_plugin_active('ai-image-alt-text-generator-for-wp/boomdevs-ai-image-alt-text-generator.php');
 
         if (!Boomdevs_Toc_Utils::isProActivated() && !$is_activated) {
@@ -1136,7 +1140,7 @@ class Boomdevs_Toc_Settings
                     <div class="header_btn">
                         <div class="left_btn">
                             <a class="button button-primary" target="_blank"
-                               href="https://demo.boomdevs.com/top-table-of-contents/">View Demo</a>
+                               href="https://demo.wpmessiah.com/top-table-of-contents/">View Demo</a>
                         </div>
                         <div class="right_btn">
                             <a class="button button-secondary" target="_blank"
