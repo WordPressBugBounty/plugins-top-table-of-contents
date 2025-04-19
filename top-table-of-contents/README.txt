@@ -1,9 +1,9 @@
 === TOP Table Of Contents ===
-Contributors: boomdevs, wpmessiah
+Contributors: wpmessiah
 Tags: table-of-contents, toc , navigation, seo, indexes
 Requires at least: 5.0
-Tested up to: 6.7.1
-Stable tag: 1.3.24
+Tested up to: 6.8
+Stable tag: 1.3.25
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -90,9 +90,9 @@ Don't settle for a basic table of contents plugin. Upgrade to the pro version of
 
 [View Demo](https://demo.wpmessiah.com/table-of-contents/)
 
-[Read Documentation](https://wpmessiah.com/docs/wordpress-table-of-contents/)
+[Read Documentation](https://docs.wpmessiah.com/docs/wordpress-table-of-contents/)
 
-[Submit Ticket](https://wpmessiah.com/forums/forum/wordpress-table-of-contents/)
+[Submit Ticket](https://support.wpmessiah.com/)
 
 Made with ❣️ By [WP Messiah](https://wpmessiah.com/)
 
@@ -294,3 +294,7 @@ Fix: Fix heading id issues for Brizy page builder
 
 = 1.3.24 - 29 December 2024 =
 * Fix: `load_textdomain_just_in_time` notice issue.
+
+= 1.3.25 - 19 April 2025 =
+compatibility: Enhanced compatibility with WordPress 6.8
+Update: Docs and Support Link
