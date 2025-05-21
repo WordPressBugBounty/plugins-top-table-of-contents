@@ -32,26 +32,23 @@ use DOMXPath;
 trait HtmlHelper
 {
     /**
-     * Convert a topLevel and depth to H1..H6 tags array
+     * Convert a topLevel and depth to H1...H6 tags array
      *
      * @param int $topLevel
      * @param int $depth
      * @return array|string[]  Array of header tags; ex: ['h1', 'h2', 'h3']
      */
-    protected function determineHeaderTags(int $topLevel, int $depth, $headings): array
+    protected function determineHeaderTags(int $topLevel, int $depth): array
     {
-        $desired = array_slice([0, 1, 2, 3, 4, 5, 6], $topLevel, $depth);
+        $desired = range($topLevel,  $topLevel + ($depth - 1));
         $allowed = [1, 2, 3, 4, 5, 6];
-        if ($headings) {
-            return array_map(function ($val) {
-                return 'h' . $val;
-            }, array_intersect(array_diff($desired, $headings), $allowed));
-        }else {
-            return array_map(function ($val) {
-                return 'h' . $val;
-            }, $allowed);
-        }
+
+        return array_map(function ($val) {
+            return 'h' . $val;
+        }, array_intersect($desired, $allowed));
     }
+
+
 
     /**
      * Traverse Header Tags in DOM Document
@@ -59,19 +56,18 @@ trait HtmlHelper
      * @param DOMDocument $domDocument
      * @param int          $topLevel
      * @param int          $depth
-     * @return ArrayIterator<int,DomElement>
+     * @return ArrayIterator<int,\DOMElement>
      */
-    protected function traverseHeaderTags(DOMDocument $domDocument, int $topLevel, int $depth, $headings): ArrayIterator
+    protected function traverseHeaderTags(DOMDocument $domDocument, int $topLevel, int $depth): ArrayIterator
     {
         $xQueryResults = new DOMXPath($domDocument);
+
         $xpathQuery = sprintf(
             "//*[%s]",
             implode(' or ', array_map(function ($v) {
                 return sprintf('local-name() = "%s"', $v);
-            }, $this->determineHeaderTags($topLevel, $depth, $headings)))
+            }, $this->determineHeaderTags($topLevel, $depth)))
         );
-
-//        var_dump($xpathQuery);
 
         $nodes = [];
         $xQueryResults = $xQueryResults->query($xpathQuery);
@@ -80,6 +76,9 @@ trait HtmlHelper
             foreach ($xQueryResults as $node) {
                 $nodes[] = $node;
             }
+
+            // Technically, xpath queries return DOMNodes, but in this case, they return the subclass DOMElement
+            // @phpstan-ignore-next-line
             return new ArrayIterator($nodes);
         } else {
             return new ArrayIterator([]);

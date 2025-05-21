@@ -47,6 +47,28 @@ define( 'BOOMDEVS_BASE_NAME', plugin_basename( __FILE__ ) );
  */
 require __DIR__ . '/vendor/autoload.php';
 
+
+/**
+ * Initialize the plugin tracker
+ *
+ * @return void
+ */
+function appsero_init_tracker_top_table_of_contents() {
+
+    if ( ! class_exists( 'Appsero\Client' ) ) {
+      require_once __DIR__ . '/appsero/src/Client.php';
+    }
+
+    $client = new Appsero\Client( 'ffa59dee-5128-4d2c-8c87-be2e83ffefa7', 'TOP Table Of Contents', __FILE__ );
+
+    // Active insights
+    $client->insights()->init();
+
+}
+
+appsero_init_tracker_top_table_of_contents();
+
+
 //RankMath SEO Content Readability
 if ( class_exists( 'RankMath' ) ) {
     add_filter( 'rank_math/researches/toc_plugins', function( $toc_plugins ) {
