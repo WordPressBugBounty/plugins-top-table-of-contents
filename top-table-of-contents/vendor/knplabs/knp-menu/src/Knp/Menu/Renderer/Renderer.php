@@ -4,7 +4,10 @@ namespace Knp\Menu\Renderer;
 
 abstract class Renderer
 {
-    protected string $charset = 'UTF-8';
+    /**
+     * @var string
+     */
+    protected $charset = 'UTF-8';
 
     public function __construct(?string $charset = null)
     {

@@ -21,7 +21,7 @@ class SlugifyViewHelperFactory
     public function __invoke($vhm)
     {
         /** @var Slugify $slugify */
-        $slugify = $vhm->getServiceLocator()->get(Slugify::class);
+        $slugify = $vhm->getServiceLocator()->get('Cocur\Slugify\Slugify');
 
         return new SlugifyViewHelper($slugify);
     }

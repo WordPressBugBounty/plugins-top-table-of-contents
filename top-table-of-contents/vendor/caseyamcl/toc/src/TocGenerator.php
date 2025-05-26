@@ -70,10 +70,10 @@ class TocGenerator
      * @param int     $depth     Depth (1 through 6)
      * @return ItemInterface     KNP Menu
      */
-    public function getMenu(string $markup, int $topLevel = 1, int $depth = 6): ItemInterface
+    public function getMenu(string $markup, $headings, int $topLevel = 1, int $depth = 6): ItemInterface
     {
-        // Set up an empty menu object
-        $menu = $this->menuFactory->createItem(self::DEFAULT_NAME);
+        // Setup an empty menu object
+        $menu = $this->menuFactory->createItem('TOC');
 
         // Empty?  Return empty menu item
         if (trim($markup) == '') {
@@ -81,14 +81,18 @@ class TocGenerator
         }
 
         // Parse HTML
-        $tagsToMatch = $this->determineHeaderTags($topLevel, $depth);
+        $tagsToMatch = $this->determineHeaderTags($topLevel, $depth, $headings);
 
         // Initial settings
         $lastElem = $menu;
 
         // Do it...
         $domDocument = $this->domParser->loadHTML($markup);
-        foreach ($this->traverseHeaderTags($domDocument, $topLevel, $depth) as $node) {
+        $n = 1;
+
+        $same_heading = [];
+
+        foreach ($this->traverseHeaderTags($domDocument, $topLevel, $depth, $headings) as $i => $node) {
             // Skip items without IDs
             if (! $node->hasAttribute('id')) {
                 continue;
@@ -116,11 +120,24 @@ class TocGenerator
                 }
             }
 
+            $slug = mb_strtolower(
+                preg_replace('/([?]|\p{P}|\s)+/u', '-', $node->textContent)
+            );
+
+            $id = trim($slug, '-');
+            $new_heading_id = $id;
+
+            if(in_array($id, $same_heading)) {
+                $new_heading_id = $new_heading_id.'-'.count(array_keys($same_heading, $id));
+            }
+
+            $same_heading[] = $id;
+
             $lastElem = $parent->addChild(
                 $node->getAttribute('id'),
                 [
                     'label' => $node->getAttribute('title') ?: $node->textContent,
-                    'uri' => '#' . $node->getAttribute('id')
+                    'uri' => '#' . $new_heading_id
                 ]
             );
         }
@@ -165,6 +182,7 @@ class TocGenerator
      */
     public function getHtmlMenu(
         string $markup,
+        $headings,
         int $topLevel = 1,
         int $depth = 6,
         ?RendererInterface $renderer = null,
@@ -177,7 +195,7 @@ class TocGenerator
                 : new ListRenderer(new Matcher(), $options);
         }
 
-        $menu = $this->getMenu($markup, $topLevel, $depth);
+        $menu = $this->getMenu($markup,$headings, $topLevel, $depth);
         return $renderer->render($menu);
     }
 
@@ -192,10 +210,11 @@ class TocGenerator
      */
     public function getOrderedHtmlMenu(
         string $markup,
+        $headings,
         int $topLevel = 1,
         int $depth = 6,
-        ?RendererInterface $renderer = null
+        RendererInterface $renderer = null
     ): string {
-        return $this->getHtmlMenu($markup, $topLevel, $depth, $renderer, true);
+        return $this->getHtmlMenu($markup, $topLevel, $depth, $headings, $renderer, true);
     }
 }

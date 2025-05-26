@@ -25,5 +25,5 @@ interface RuleProviderInterface
      *
      * @return array
      */
-    public function getRules(string $ruleset): array;
+    public function getRules($ruleset);
 }

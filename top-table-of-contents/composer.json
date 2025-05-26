@@ -16,7 +16,7 @@
     "minimum-stability": "dev",
     "require": {
         "caseyamcl/toc": "^3.0",
-        "appsero/client": "^2.0"
+       "appsero/client": "^2.0"
 
     }
 }

@@ -13,8 +13,14 @@ use Psr\Container\ContainerInterface;
  */
 class PsrProvider implements MenuProviderInterface
 {
-    public function __construct(private ContainerInterface $container)
+    /**
+     * @var ContainerInterface
+     */
+    private $container;
+
+    public function __construct(ContainerInterface $container)
     {
+        $this->container = $container;
     }
 
     public function get(string $name, array $options = []): ItemInterface

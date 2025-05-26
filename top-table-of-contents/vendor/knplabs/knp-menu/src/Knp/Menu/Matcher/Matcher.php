@@ -13,12 +13,12 @@ class Matcher implements MatcherInterface
     /**
      * @var \SplObjectStorage<ItemInterface, bool>
      */
-    private \SplObjectStorage $cache;
+    private $cache;
 
     /**
      * @var iterable|VoterInterface[]
      */
-    private iterable $voters;
+    private $voters;
 
     /**
      * @param VoterInterface[]|iterable $voters

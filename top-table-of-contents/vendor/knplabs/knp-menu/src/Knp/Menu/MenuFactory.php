@@ -11,14 +11,14 @@ use Knp\Menu\Factory\ExtensionInterface;
 class MenuFactory implements FactoryInterface
 {
     /**
-     * @var array<int, list<ExtensionInterface>>
+     * @var array[]
      */
-    private array $extensions = [];
+    private $extensions = [];
 
     /**
      * @var ExtensionInterface[]|null
      */
-    private ?array $sorted = null;
+    private $sorted;
 
     public function __construct()
     {

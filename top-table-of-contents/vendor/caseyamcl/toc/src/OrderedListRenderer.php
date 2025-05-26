@@ -34,7 +34,7 @@ class OrderedListRenderer extends ListRenderer
     /**
      * @param ItemInterface $item
      * @param array<string> $attributes
-     * @param array         $options
+     * @param array<mixed> $options
      * @return string
      */
     protected function renderList(ItemInterface $item, array $attributes, array $options): string

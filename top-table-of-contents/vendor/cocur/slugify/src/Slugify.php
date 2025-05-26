@@ -26,22 +26,22 @@ use Cocur\Slugify\RuleProvider\RuleProviderInterface;
  */
 class Slugify implements SlugifyInterface
 {
-    public const LOWERCASE_NUMBERS_DASHES = '/[^A-Za-z0-9]+/';
+    const LOWERCASE_NUMBERS_DASHES = '/[^A-Za-z0-9]+/';
 
     /**
      * @var array<string,string>
      */
-    protected array $rules = [];
+    protected $rules = [];
 
     /**
      * @var RuleProviderInterface
      */
-    protected RuleProviderInterface $provider;
+    protected $provider;
 
     /**
      * @var array<string,mixed>
      */
-    protected array $options = [
+    protected $options = [
         'regexp'    => self::LOWERCASE_NUMBERS_DASHES,
         'separator' => '-',
         'lowercase' => true,
@@ -53,7 +53,6 @@ class Slugify implements SlugifyInterface
             // Languages are preferred if they appear later, list is ordered by number of
             // websites in that language
             // https://en.wikipedia.org/wiki/Languages_used_on_the_Internet#Content_languages_for_websites
-            'yiddish',
             'armenian',
             'azerbaijani',
             'burmese',
@@ -80,7 +79,7 @@ class Slugify implements SlugifyInterface
      * @param array                 $options
      * @param RuleProviderInterface $provider
      */
-    public function __construct(array $options = [], ?RuleProviderInterface $provider = null)
+    public function __construct(array $options = [], RuleProviderInterface $provider = null)
     {
         $this->options  = array_merge($this->options, $options);
         $this->provider = $provider ? $provider : new DefaultRuleProvider();
@@ -98,7 +97,7 @@ class Slugify implements SlugifyInterface
      *
      * @return string Slugified version of the string
      */
-    public function slugify(string $string, array|string|null $options = null): string
+    public function slugify($string, $options = null)
     {
         // BC: the second argument used to be the separator
         if (is_string($options)) {
@@ -146,7 +145,7 @@ class Slugify implements SlugifyInterface
      *
      * @return Slugify
      */
-    public function addRule($character, $replacement): self
+    public function addRule($character, $replacement)
     {
         $this->rules[$character] = $replacement;
 
@@ -160,7 +159,7 @@ class Slugify implements SlugifyInterface
      *
      * @return Slugify
      */
-    public function addRules(array $rules): self
+    public function addRules(array $rules)
     {
         foreach ($rules as $character => $replacement) {
             $this->addRule($character, $replacement);
@@ -174,7 +173,7 @@ class Slugify implements SlugifyInterface
      *
      * @return Slugify
      */
-    public function activateRuleSet($ruleSet): self
+    public function activateRuleSet($ruleSet)
     {
         return $this->addRules($this->provider->getRules($ruleSet));
     }
@@ -186,7 +185,7 @@ class Slugify implements SlugifyInterface
      *
      * @return Slugify
      */
-    public static function create(array $options = []): self
+    public static function create(array $options = [])
     {
         return new static($options);
     }

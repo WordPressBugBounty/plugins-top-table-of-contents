@@ -42,7 +42,7 @@ class MarkupFixer
     /**
      * @var SlugifyInterface
      */
-    private $slugifier;
+    private $sluggifier;
 
     /**
      * Constructor
@@ -53,7 +53,7 @@ class MarkupFixer
     public function __construct(?HTML5 $htmlParser = null, ?SlugifyInterface $slugify = null)
     {
         $this->htmlParser = $htmlParser ?? new HTML5();
-        $this->slugifier = $slugify ?? new UniqueSlugify();
+        $this->sluggifier = $slugify ?? new UniqueSlugify();
     }
 
     /**
@@ -65,7 +65,7 @@ class MarkupFixer
      * @return string Markup with added IDs
      * @throws RuntimeException
      */
-    public function fix(string $markup, int $topLevel = 1, int $depth = 6): string
+    public function fix(string $markup, $headings, int $topLevel = 1, int $depth = 6): string
     {
         if (! $this->isFullHtmlDocument($markup)) {
             $partialID = uniqid('toc_generator_');
@@ -73,26 +73,13 @@ class MarkupFixer
         }
 
         $domDocument = $this->htmlParser->loadHTML($markup);
-        $domDocument->preserveWhiteSpace = true; // do not clobber whitespace
-
-        // If using the default slugifier, ensure that a unique instance of the class
-        $slugger = $this->slugifier instanceof UniqueSlugify ? new UniqueSlugify() : $this->slugifier;
-
-        /** @var DOMElement $node */
-        foreach ($this->traverseHeaderTags($domDocument, $topLevel, $depth) as $node) {
-            // If no id is found, try the title attribute
-            $id = $node->getAttribute('id') ?: $node->getAttribute('title');
-
-            // If no title attribute, use the text content
-            $id = $slugger->slugify($id ?: $node->textContent);
-
-            // If the first character begins with a numeric, prepend 'toc-' on it.
-            if (ctype_digit(substr($id, 0, 1))) {
-                $id = 'toc-' . $id;
+        $domDocument->preserveWhiteSpace = false;
+        $slugger = $this->sluggifier instanceof UniqueSlugify ? new UniqueSlugify() : $this->sluggifier;
+        foreach ($this->traverseHeaderTags($domDocument, $topLevel, $depth, $headings) as $node) {
+            if ($node->getAttribute('id')) {
+                continue;
             }
-
-            // Overwrite the id attribute
-            $node->setAttribute('id', $id);
+            $node->setAttribute('id', $slugger->slugify($node->getAttribute('title') ?: $node->textContent));
         }
 
         return $this->htmlParser->saveHTML(

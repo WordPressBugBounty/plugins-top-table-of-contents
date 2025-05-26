@@ -9,7 +9,7 @@ class ChainProvider implements MenuProviderInterface
     /**
      * @var iterable|MenuProviderInterface[]
      */
-    private iterable $providers;
+    private $providers;
 
     /**
      * @param MenuProviderInterface[]|iterable $providers

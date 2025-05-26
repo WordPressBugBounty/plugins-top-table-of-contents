@@ -16,7 +16,7 @@
  * Plugin Name:       TOP Table Of Contents
  * Plugin URI:        https://wpmessiah.com/products/wordpress-table-of-contents/
  * Description:       Easily creates an SEO-friendly table of contents for your blog posts and pages. Offers both Auto and Manual Insert with highly customization options.
- * Version:           1.3.25
+ * Version:           1.3.26
  * Author:            WP Messiah
  * Author URI:        https://wpmessiah.com/
  * License:           GPL-2.0+
@@ -34,20 +34,17 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Plugin basic information.
  */
-define( 'BOOMDEVS_TOC_VERSION', '1.3.25' );
+define( 'BOOMDEVS_TOC_VERSION', '1.3.26' );
 define( 'BOOMDEVS_TOC_PATH', plugin_dir_path( __FILE__ ) );
 define( 'BOOMDEVS_TOC_URL', plugin_dir_url( __FILE__ ) );
 define( 'BOOMDEVS_TOC_NAME', 'boomdevs-toc' );
 define( 'BOOMDEVS_FULL_NAME', 'TOP Table Of Contents' );
 define( 'BOOMDEVS_BASE_NAME', plugin_basename( __FILE__ ) );
 
-
 /**
  * Require Composer autoload
  */
 require __DIR__ . '/vendor/autoload.php';
-
-
 /**
  * Initialize the plugin tracker
  *

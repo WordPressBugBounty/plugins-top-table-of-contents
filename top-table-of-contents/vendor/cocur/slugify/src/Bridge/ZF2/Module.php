@@ -21,7 +21,7 @@ class Module implements ServiceProviderInterface, ViewHelperProviderInterface
      *
      * @return array<string,array<string,string>>
      */
-    public function getServiceConfig(): array
+    public function getServiceConfig()
     {
         return [
             'factories' => [
@@ -39,7 +39,7 @@ class Module implements ServiceProviderInterface, ViewHelperProviderInterface
      *
      * @return array<string,array<string,string>>|\Zend\ServiceManager\Config
      */
-    public function getViewHelperConfig(): array
+    public function getViewHelperConfig()
     {
         return [
             'factories' => [

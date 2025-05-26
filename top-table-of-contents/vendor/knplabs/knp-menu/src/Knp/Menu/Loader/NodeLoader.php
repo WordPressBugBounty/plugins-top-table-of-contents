@@ -8,14 +8,20 @@ use Knp\Menu\NodeInterface;
 
 class NodeLoader implements LoaderInterface
 {
-    public function __construct(private FactoryInterface $factory)
+    /**
+     * @var FactoryInterface
+     */
+    private $factory;
+
+    public function __construct(FactoryInterface $factory)
     {
+        $this->factory = $factory;
     }
 
     public function load($data): ItemInterface
     {
         if (!$data instanceof NodeInterface) {
-            throw new \InvalidArgumentException(\sprintf('Unsupported data. Expected Knp\Menu\NodeInterface but got %s', \get_debug_type($data)));
+            throw new \InvalidArgumentException(\sprintf('Unsupported data. Expected Knp\Menu\NodeInterface but got %s', \is_object($data) ? \get_class($data) : \gettype($data)));
         }
 
         $item = $this->factory->createItem($data->getName(), $data->getOptions());
