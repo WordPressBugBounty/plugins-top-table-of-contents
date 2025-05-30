@@ -149,3 +149,7 @@ Update: Docs and Support Link
 
 = 1.3.26 - 26 may 2025 =
 Fixd: composer package issues
+
+= 1.3.27 - 30 may 2025 =
+Add : Notification popup for offer
+Fix: some minor issues

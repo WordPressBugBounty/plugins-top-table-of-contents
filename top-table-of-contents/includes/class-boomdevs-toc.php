@@ -79,7 +79,7 @@ class Boomdevs_Toc {
         if ( defined( 'BOOMDEVS_TOC_VERSION' ) ) {
             $this->version = BOOMDEVS_TOC_VERSION;
         } else {
-            $this->version = '1.3.26';
+            $this->version = '1.3.27';
         }
         
         if ( defined( 'BOOMDEVS_FULL_NAME' ) ) {
@@ -177,6 +177,8 @@ class Boomdevs_Toc {
          * The class responsible for loading widgets of the plugin.
          */
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-boomdevs-toc-ajax.php';
+
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-boomdevs-notification-widget-top-table.php';
 
         $this->loader = new Boomdevs_Toc_Loader();
 
