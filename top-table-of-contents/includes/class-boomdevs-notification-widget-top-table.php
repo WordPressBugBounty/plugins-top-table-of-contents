@@ -23,14 +23,17 @@ class BoomDevs_Notification_Widget_Top_Table
         if ($cached_data !== false) return $cached_data;
 
         $api_url = add_query_arg('plugin_slug', $this->plugin_slug, $this->api_url);
-        $response = wp_remote_get($api_url, ['timeout' => 15, 'sslverify' => false]);
+        $response = wp_remote_get($api_url, ['timeout' => 10, 'sslverify' => true]);
 
         if (is_wp_error($response)) return ['error' => $response->get_error_message()];
         $data = json_decode(wp_remote_retrieve_body($response), true);
 
-        if (empty($data)) return ['error' => 'No data returned from API'];
-
-        set_transient($this->transient_key, $data, 12 * HOUR_IN_SECONDS);
+        if (empty($data)) {
+            set_transient($this->transient_key, [], 12 * HOUR_IN_SECONDS);
+        } else {
+            set_transient($this->transient_key, $data, 12 * HOUR_IN_SECONDS);
+        }
+        
         return $data;
     }
 
