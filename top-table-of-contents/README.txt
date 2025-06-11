@@ -3,7 +3,7 @@ Contributors: wpmessiah
 Tags: table-of-contents, toc , navigation, seo, indexes
 Requires at least: 5.0
 Tested up to: 6.8
-Stable tag: 1.3.27
+Stable tag: 1.3.28
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -305,3 +305,6 @@ Fixd: composer package issues
 = 1.3.27 - 30 may 2025 =
 Add : Notification popup for offer
 Fix: some minor issues
+
+= 1.3.28 - 11 June 2025 =
+Fix: admin panel loading issues

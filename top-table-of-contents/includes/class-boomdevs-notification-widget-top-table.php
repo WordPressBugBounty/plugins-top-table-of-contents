@@ -19,8 +19,8 @@ class BoomDevs_Notification_Widget_Top_Table
     }
 
     private function fetch_notification_data() {
-        // $cached_data = get_transient($this->transient_key);
-        // if ($cached_data !== false) return $cached_data;
+        $cached_data = get_transient($this->transient_key);
+        if ($cached_data !== false) return $cached_data;
 
         $api_url = add_query_arg('plugin_slug', $this->plugin_slug, $this->api_url);
         $response = wp_remote_get($api_url, ['timeout' => 15, 'sslverify' => false]);
