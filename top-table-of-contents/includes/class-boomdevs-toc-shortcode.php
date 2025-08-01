@@ -105,7 +105,7 @@ class Boomdevs_Toc_Shortcode
             $this->total_headings = count($matches);
         }
 
-?>
+    ?>
         <?php if ($this->total_headings >= intval($settings['number_of_headings'])) : ?>
 
             <?php if (Boomdevs_Toc_Utils::isProActivated()) { ?>
@@ -166,14 +166,13 @@ class Boomdevs_Toc_Shortcode
                 </div>
             </div>
 
-<?php
+    <?php
         endif;
         return ob_get_clean();
     }
 
-
     /**
-     * Auto id Add in Heading
+     * Automatically add IDs to headings in the content.
      */
     public function boomdevs_toc_auto_id_headings($content)
     {
@@ -218,43 +217,47 @@ class Boomdevs_Toc_Shortcode
             }
         }
 
-        //Same heading automatic heading anchors
-        $content = preg_replace_callback("/\<h([1|2|3|4|5|6])/", function ($matches) {
+        $content = preg_replace_callback("/\<h([1-6])/", function ($matches) {
             static $num = 1;
             $hTag = $matches[1];
             return '<h' . $hTag . ' id="boomdevs_' . $num++ . '"';
         }, $content);
-
-        $pattern = '#<(?P<tag_name>h[1-6])(?P<class>[^>]*)(?P<tag_extra>[^>]*)>(?P<tag_contents>.*?)<\/h[1-6]>#i';
-
+        
+        $pattern = '#<(?P<tag_name>h[1-6])(?P<class>[^>]*)>(?P<tag_contents>.*?)<\/h[1-6]>#is';
+        
         if (preg_match_all($pattern, $content, $matches, PREG_SET_ORDER)) {
             $same_heading = [];
+            
             foreach ($matches as $match) {
                 $tag_name = $match['tag_name'];
-                $tag_extra = $match['tag_extra'];
                 $tag_contents = $match['tag_contents'];
-                $full_tag = $match[0];;
+                $full_tag = $match[0];
                 $tag_class = $match['class'];
-                $without_nbsp_title = str_replace("&nbsp;", " ", $tag_contents);
+                
+                // Extract all text content, including from nested tags
+                $text_content = strip_tags($tag_contents); // Remove HTML tags to get plain text
+                $text_content = html_entity_decode($text_content, ENT_QUOTES | ENT_HTML5, 'UTF-8'); // Decode HTML entities
+                $text_content = str_replace("&nbsp;", " ", $text_content); // Replace non-breaking spaces
+                
+                // Generate slug from text content
                 $slug = mb_strtolower(
-                    preg_replace('/([?]|\p{P}|\s)+/u', '-', strip_tags($without_nbsp_title))
+                    preg_replace('/([?]|\p{P}|\s)+/u', '-', trim($text_content))
                 );
-
+        
+                // Clean up the slug
                 $id = trim($slug, '-');
-                $id = str_replace("-8211", "", $id);
-                $id = str_replace("8220-", "", $id);
-                $id = str_replace("8221-", "", $id);
-                $id = str_replace("-amp", "", $id);
-                $id = str_replace("-8217", "", $id);
-
+                $id = str_replace(["-8211", "8220-", "8221-", "-amp", "-8217"], "", $id);
+        
+                // Handle duplicate IDs
                 $new_heading_id = $id;
-
                 if (in_array($id, $same_heading)) {
                     $new_heading_id = $new_heading_id . '-' . count(array_keys($same_heading, $id));
                 }
-
+        
                 $same_heading[] = $id;
-                $new_tag = "<$tag_name id='$new_heading_id' $tag_class $tag_extra>$tag_contents</$tag_name>";
+        
+                // Reconstruct the heading tag with the new ID
+                $new_tag = "<$tag_name id='$new_heading_id' $tag_class>$tag_contents</$tag_name>";
                 $content = str_replace($full_tag, $new_tag, $content);
             }
         }
