@@ -52,7 +52,6 @@ class Boomdevs_Toc_Admin {
         $this->plugin_name = $plugin_name;
         $this->version     = $version;
         add_action('wp_ajax_Boomdevs_Toc_custom_plugin_install', [$this, 'Boomdevs_Toc_custom_plugin_install']);
-        add_action( 'wp_ajax_nopriv_Boomdevs_Toc_custom_plugin_install', [$this, 'Boomdevs_Toc_custom_plugin_install'] );
 
     }
 
@@ -157,6 +156,10 @@ class Boomdevs_Toc_Admin {
     }
 
     public function Boomdevs_Toc_custom_plugin_install() {
+
+        if ( ! current_user_can( 'install_plugins' ) ) {
+            wp_send_json_error( array( 'message' => __( 'You do not have permission to install plugins.', 'boomdevs-toc' ) ), 403 );
+        }
 
         check_ajax_referer('Boomdevs_Toc_custom_plugin_install_nonce', 'security');
     

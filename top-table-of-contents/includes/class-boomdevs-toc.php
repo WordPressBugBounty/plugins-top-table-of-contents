@@ -79,7 +79,7 @@ class Boomdevs_Toc {
         if ( defined( 'BOOMDEVS_TOC_VERSION' ) ) {
             $this->version = BOOMDEVS_TOC_VERSION;
         } else {
-            $this->version = '1.3.30';
+            $this->version = '1.4.0';
         }
         
         if ( defined( 'BOOMDEVS_FULL_NAME' ) ) {
@@ -254,7 +254,6 @@ class Boomdevs_Toc {
     private function register_ajax_hooks() {
 
         $plugin_ajax = new Boomdevs_Toc_Ajax();
-        $this->loader->add_action('wp_ajax_nopriv_get_premade_layout', $plugin_ajax, 'get_premade_layout');
         $this->loader->add_action('wp_ajax_get_premade_layout', $plugin_ajax, 'get_premade_layout');
     }
 

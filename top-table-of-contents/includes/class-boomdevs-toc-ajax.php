@@ -15,6 +15,10 @@ class Boomdevs_Toc_Ajax {
      */
     public function get_premade_layout() {
         
+        if ( ! current_user_can( 'manage_options' ) ) {
+            wp_send_json_error( array( 'message' => __( 'You do not have permission to perform this action.', 'boomdevs-toc' ) ), 403 );
+        }
+
         check_ajax_referer( 'layout_content', 'nonce' );
 
         $default_available_skins_data = [

@@ -2,8 +2,8 @@
 Contributors: wpmessiah
 Tags: table-of-contents, toc , navigation, seo, indexes
 Requires at least: 5.0
-Tested up to: 6.8
-Stable tag: 1.3.30
+Tested up to: 6.9
+Stable tag: 1.4.0
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -314,3 +314,12 @@ Fix: some minor issues
 
 = 1.3.30 - 01 August 2025 =
 Fix: Resolved heading auto ID generator issue.
+
+= 1.3.31 - 04 November 2025 =
+Fix: some minor issues
+
+= 1.4.0 - 22 January 2026 =
+* Fix: Critical Broken Access Control (BAC) vulnerability in plugin installation AJAX handler.
+* Fix: Broken Access Control (BAC) vulnerability in skin import AJAX handler.
+* Security: Removed unauthenticated access and added capability checks to administrative AJAX actions.
+* Compatibility: Enhanced compatibility with WordPress 6.9.
