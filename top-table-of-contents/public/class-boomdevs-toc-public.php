@@ -197,9 +197,9 @@ class Boomdevs_Toc_Public {
                 <style>
                     .bd_toc_container.scroll-to-fixed-fixed {
                         left: auto !important;
-                        right: 0 ;
+                        right: 0 !important;
                         -webkit-animation: fadein .5s ease-in-out;
-                        transition: none !important;
+                        transition: right 0.2s ease-in-out !important;
                     }
                     .bd_toc_container .layout_toggle_button {
                         left: calc(0% - 124px);
@@ -220,9 +220,9 @@ class Boomdevs_Toc_Public {
                 <style>
                     .bd_toc_container.scroll-to-fixed-fixed {
                         left: 0 !important;
-                        right: auto;
+                        right: auto !important;
                         -webkit-animation: fadein .5s ease-in-out;
-                        transition: none !important;
+                        transition: left 0.2s ease-in-out !important;
                     }
                     @keyframes fadein {
                         from { opacity: 0; }
@@ -236,7 +236,9 @@ class Boomdevs_Toc_Public {
                 ?>
                 <style>
                     .bd_toc_container.scroll-to-fixed-fixed {
-                        left: -<?php echo esc_html($fiexd_layout_width); ?>px !important;
+                        <?php echo esc_html($sticky_mode_position); ?>: -<?php echo esc_html($fiexd_layout_width); ?>px !important;
+                        <?php echo $sticky_mode_position === 'right' ? 'left' : 'right'; ?>: auto !important;
+                        transition: <?php echo esc_html($sticky_mode_position); ?> 0.2s ease-in-out !important;
                     }
                 </style>
                 <?php

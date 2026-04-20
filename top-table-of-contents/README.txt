@@ -2,8 +2,8 @@
 Contributors: wpmessiah
 Tags: table-of-contents, toc , navigation, seo, indexes
 Requires at least: 5.0
-Tested up to: 6.9
-Stable tag: 1.4.0
+Tested up to: 7.0
+Stable tag: 1.4.1
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -323,3 +323,7 @@ Fix: some minor issues
 * Fix: Broken Access Control (BAC) vulnerability in skin import AJAX handler.
 * Security: Removed unauthenticated access and added capability checks to administrative AJAX actions.
 * Compatibility: Enhanced compatibility with WordPress 6.9.
+
+= 1.4.1 - 20 April 2026 =
+* Fix: Resolved sticky sidebar rendering and positioning issues when aligned to the "Right".
+* Update: Enhanced "Right" position side animations with smooth transitions to match the Left sidebar's nature.
